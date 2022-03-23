@@ -1,0 +1,91 @@
+package DoctorHome.DoctorHome;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Register_Doc {
+	 WebDriver driver;
+
+		@BeforeClass
+		public void beforeClass() {
+			System.setProperty("webdriver.chrome.driver", "E:\\TestAuto_DoctorHome\\chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+		}
+
+		@Test
+		public void TC_01_Register_Empty_Data() {
+			driver.get("http://localhost:3000/");
+			
+			driver.findElement(By.xpath("//div[@id='rc-tabs-0-tab-2']")).click();
+			sleepInSecond(2);
+			driver.findElement(By.id("basic_fullname")).sendKeys("");
+			driver.findElement(By.id("basic_gender")).sendKeys("");
+			driver.findElement(By.id("basic_dob")).sendKeys("");
+			driver.findElement(By.id("basic_phonenumber")).sendKeys("");
+			driver.findElement(By.id("basic_mail")).sendKeys("");
+			driver.findElement(By.id("basic_password")).sendKeys("");
+			driver.findElement(By.id("basic_specialist")).sendKeys("");
+			WebElement browse = driver.findElement(By.xpath("//div[@class='ant-row ant-form-item']//span[contains(text(),'Thêm ảnh')]"));
+			browse.sendKeys("");
+			driver.findElement(By.id("basic_detailPersonal")).sendKeys("");
+			driver.findElement(By.id("basic_clinicName")).sendKeys("");
+			driver.findElement(By.id("basic_clinicAddress")).sendKeys("");
+			WebElement browse1 = driver.findElement(By.xpath("//body/div[@id='root']/div[@class='App']/section[@class='ant-layout Layout']/main[@class='ant-layout-content Content']/div[@class='ant-tabs ant-tabs-top ant-tabs-centered']/div[@class='ant-tabs-content-holder']/div[@class='ant-tabs-content ant-tabs-content-top']/div[@id='rc-tabs-0-panel-2']/form[@id='basic']/div[@class='ant-card ant-card-bordered']/div[@class='ant-card-body']/div[@class='ant-card ant-card-bordered ant-card-type-inner']/div[@class='ant-card-body']/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/span[1]/div[1]/span[1]/button[1]"));
+			browse1.sendKeys("");
+			WebElement browse2 = driver.findElement(By.xpath("//body/div[@id='root']/div[@class='App']/section[@class='ant-layout Layout']/main[@class='ant-layout-content Content']/div[@class='ant-tabs ant-tabs-top ant-tabs-centered']/div[@class='ant-tabs-content-holder']/div[@class='ant-tabs-content ant-tabs-content-top']/div[@id='rc-tabs-0-panel-2']/form[@id='basic']/div[@class='ant-card ant-card-bordered']/div[@class='ant-card-body']/div[@class='ant-card ant-card-bordered ant-card-type-inner']/div[@class='ant-card-body']/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/span[1]/div[1]/span[1]/button[1]"));
+			browse2.sendKeys("");
+			driver.findElement(By.id("basic_nameOfPracticeHospital")).sendKeys("");
+			driver.findElement(By.id("basic_addressOfPracticeHospital")).sendKeys("");
+			WebElement browse3 = driver.findElement(By.xpath("//div[@class='ant-row ant-form-item ant-form-item-with-help ant-form-item-has-error']//span[contains(text(),'Thêm file PDF, hình ảnh')]"));
+			browse3.sendKeys("");
+			driver.findElement(By.id("basic_nameOfHospital")).sendKeys("");
+			driver.findElement(By.id("basic_addressOfHospital")).sendKeys("");
+			WebElement browse4 = driver.findElement(By.xpath("//body//div[@id='root']//div[@class='ant-card-body']//div[@class='ant-card-body']//div[2]//div[3]//div[1]//div[2]//div[1]//div[1]//span[1]//div[1]//span[1]//button[1]//span[2]"));
+			browse4.sendKeys("");
+			driver.findElement(By.id("btnRegister")).click();
+			sleepInSecond(2);
+			
+			//Verify error message as expected
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng điền họ và tên đầy đủ']"));
+			driver.findElement(By.xpath("//*[contains(text(), ''gender' is required']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng chọn ngày, tháng, năm sinh']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng nhập số điện thoại']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng nhập email liên hệ']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng điền mật khẩu']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng chọn chuyên khoa của bạn']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng nhập để có thể nhiều người biết để tin tưởng về bạn']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng điền tên phòng khám của bạn']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng điền địa chỉ']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng đăng tải ảnh của bạn']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng đăng tải file']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng điền']"));
+			driver.findElement(By.xpath("//*[contains(text(), 'Vui lòng điền địa chỉ']"));
+			sleepInSecond(2);			
+		}
+		
+		
+		
+		@AfterClass
+		  public void afterTest() {
+		      driver.quit();
+		  }
+
+		public void sleepInSecond(long second) {
+			try {
+				Thread.sleep(second * 1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+}

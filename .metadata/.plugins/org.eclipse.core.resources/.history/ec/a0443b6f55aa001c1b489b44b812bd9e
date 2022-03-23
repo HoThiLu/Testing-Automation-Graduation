@@ -1,0 +1,86 @@
+package DoctorHome.DoctorHome;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Register_Doc {
+	 WebDriver driver;
+
+		@BeforeClass
+		public void beforeClass() {
+			System.setProperty("webdriver.chrome.driver", "E:\\TestAuto_DoctorHome\\chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+		}
+
+		@Test
+		public void TC_01_Register_Empty_Data() {
+			driver.get("http://localhost:3001/");
+			
+			driver.findElement(By.xpath("//div[@id='rc-tabs-0-tab-2']")).click();
+			sleepInSecond(2);
+			driver.findElement(By.id("basic_fullname")).sendKeys("");
+			driver.findElement(By.id("basic_gender")).sendKeys("Nữ");
+			driver.findElement(By.id("basic_dob")).sendKeys("21/3/1995");
+			driver.findElement(By.id("basic_phonenumber")).sendKeys("0454674212");
+			driver.findElement(By.id("basic_mail")).sendKeys("thilu@gmail.com");
+			driver.findElement(By.id("basic_password")).sendKeys("123456");
+			driver.findElement(By.id("basic_specialist")).sendKeys("Tim mạch");
+			//driver.findElement(By.xpath("//div[8]//div[1]//div[2]//div[1]//div[1]//span[1]//div[1]//span[1]//button[1]")).sendKeys("");
+			driver.findElement(By.id("basic_detailPersonal")).sendKeys("Có 5 năm kinh nghiệm");
+			driver.findElement(By.id("basic_clinicName")).sendKeys("Nhà Khoa An Nhiên");
+			driver.findElement(By.id("basic_clinicAddress")).sendKeys("Đà Nẵng");
+			driver.findElement(By.id("basic_clinicImage")).sendKeys("");
+			driver.findElement(By.id("basic_PracticingCertificate")).sendKeys("");
+			driver.findElement(By.id("basic_nameOfPracticeHospital")).sendKeys("Nhà Khoa An Nhiên");
+			driver.findElement(By.id("basic_addressOfPracticeHospital")).sendKeys("Đà Nẵng");
+			//driver.findElement(By.xpath("//body//div[@id='root']//div[@class='ant-card-body']//div[@class='ant-card-body']//div[2]//div[3]//div[1]//div[2]//div[1]//div[1]//span[1]//div[1]//span[1]//button[1]")).sendKeys("");
+			driver.findElement(By.id("/basic_nameOfHospital")).sendKeys("198 Đà Nẵng");
+			driver.findElement(By.id("basic_addressOfHospital")).sendKeys("Đà Nẵng");
+			driver.findElement(By.xpath("//div[@class='ant-col ant-col-5']//button[@type='button']")).sendKeys("");
+			driver.findElement(By.id("btnRegister")).click();
+			sleepInSecond(2);
+			
+			//Verify error message as expected
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[@class='ant-card ant-card-bordered']//div[1]//div[2]//div[1]//div[1]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng điền họ và tên đầy đủ");
+//			Assert.assertEquals(driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/section[1]/main[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]")).getText(), "'gender' is required");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[@class='ant-card ant-card-bordered']//div[1]//div[2]//div[1]//div[3]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng chọn ngày, tháng, năm sinh");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[@class='ant-card ant-card-bordered ant-card-type-inner']//div[4]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng nhập số điện thoại");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[5]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng nhập email liên hệ");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[6]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng điền mật khẩu");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[7]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng chọn chuyên khoa của bạn");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[@class='ant-col ant-col-10']//div[@class='ant-form-item-explain ant-form-item-explain-connected']//div[1]")).getText(), "Vui lòng nhập để có thể nhiều người biết để tin tưởng về bạn");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[@class='ant-card-body']//div[2]//div[2]//div[1]//div[1]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng điền tên phòng khám của bạn");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[@class='ant-card-body']//div[2]//div[2]//div[1]//div[2]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng điền địa chỉ");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[@class='ant-card-body']//div[2]//div[2]//div[1]//div[3]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng đăng tải ảnh của bạn");
+//			Assert.assertEquals(driver.findElement(By.xpath("//div[3]//div[2]//div[1]//div[1]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng đăng tải file");
+//			Assert.assertEquals(driver.findElement(By.xpath("//body//div[@id='root']//div[@class='ant-card-body']//div[@class='ant-card-body']//div[2]//div[1]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng điền");
+//			Assert.assertEquals(driver.findElement(By.xpath("//body//div[@id='root']//div[@class='ant-card-body']//div[@class='ant-card-body']//div[2]//div[2]//div[1]//div[2]//div[2]//div[1]")).getText(), "Vui lòng điền địa chỉ");
+//			
+//			
+		}
+		
+		
+		
+		@AfterClass
+		  public void afterTest() {
+		      driver.quit();
+		  }
+
+		public void sleepInSecond(long second) {
+			try {
+				Thread.sleep(second * 1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+}

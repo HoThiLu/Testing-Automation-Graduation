@@ -1,0 +1,54 @@
+package DoctorHome.DoctorHome;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+// org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Login {
+	 	WebDriver driver;
+		@BeforeClass
+		public void beforeClass() {
+			System.setProperty("webdriver.chrome.driver", "E:\\TestAuto_DoctorHome\\chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+		}
+
+		@Test
+		public void TC_01_Login_Empty_Data() {
+			driver.get("https://alada.vn/tai-khoan/dang-nhap.html");
+			
+			driver.findElement(By.xpath("//input[@id='txtLoginUsername']")).sendKeys("");
+			driver.findElement(By.xpath("//input[@id='txtLoginPassword']")).sendKeys("");
+			driver.findElement(By.xpath("//button[@type='submit']")).click();
+			//sleepInSecond(2);
+			
+			//Verify error message as expected
+			
+			Assert.assertEquals(driver.findElement(By.id("txtLoginUsername-error")).getText(), "Vui lòng nhập email");
+			Assert.assertEquals(driver.findElement(By.id("txtLoginPassword-error")).getText(), "Vui lòng nhập mật khẩu");
+			
+		}
+
+
+//		@AfterClass
+//		public void afterClass() {
+//			driver.quit();
+//		}
+//
+//		public void sleepInSecond(long second) {
+//			try {
+//				Thread.sleep(second * 1000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+
+}
